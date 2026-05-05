@@ -1,0 +1,9 @@
+medicine_id,medicine_name,category,current_stock_units,unit,expiry_date,criticality,min_target_days,evidence_id
+MED001,Amoxicillin 500mg,Antibiotic,91,packs,2026-12-31,high,30,inventory:14
+MED002,Oral Rehydration Salts,Rehydration,420,sachets,2027-03-30,high,30,inventory:15
+MED003,Regular Insulin,Endocrine,36,vials,2026-07-20,critical,45,inventory:16
+MED004,Artemether-Lumefantrine,Antimalarial,160,packs,2026-11-12,high,30,inventory:17
+MED005,Paracetamol 500mg,Analgesic,900,tabs,2026-06-01,medium,30,inventory:18
+MED006,Oxytocin Injection,Maternal Health,28,ampoules,2026-05-25,critical,45,inventory:19
+MED007,Salbutamol Inhaler,Respiratory,44,inhalers,2026-10-10,high,30,inventory:20
+MED008,Ceftriaxone Injection,Antibiotic,70,vials,2026-09-15,high,30,inventory:21

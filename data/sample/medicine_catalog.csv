@@ -1,0 +1,9 @@
+medicine_id,medicine_name,notes,system_boundary
+MED001,Amoxicillin 500mg,Essential antibiotic,procurement only
+MED002,Oral Rehydration Salts,Essential rehydration supply,procurement only
+MED003,Regular Insulin,Cold-chain medicine,procurement only
+MED004,Artemether-Lumefantrine,Antimalarial,procurement only
+MED005,Paracetamol 500mg,Analgesic,procurement only
+MED006,Oxytocin Injection,Maternal health medicine,procurement only
+MED007,Salbutamol Inhaler,Respiratory medicine,procurement only
+MED008,Ceftriaxone Injection,Injectable antibiotic,procurement only

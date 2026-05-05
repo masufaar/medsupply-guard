@@ -1,0 +1,5 @@
+medicine_id,quantity_units,expected_arrival_date
+MED002,200,2026-05-08
+MED004,100,2026-05-15
+MED005,300,2026-05-18
+MED007,25,2026-05-07
