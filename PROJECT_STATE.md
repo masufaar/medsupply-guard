@@ -77,8 +77,13 @@ Evidence-backed dashboard and action plan
 - The app supports logistics/procurement decisions only.
 - The demo must be narrow, reliable, and story-driven.
 
-## Current status
-Day 1 initialized: repository scaffold, state files, prompt files, sample data, Streamlit shell, analytics module, and tests created.
+Day 3 completed: Gemma 4 integration is complete.
+- Added `GemmaClient` supporting `mock` and `ollama` modes.
+- Default constrained local model is `gemma4:e2b`.
+- Added safety layer to detect and refuse clinical advice queries.
+- UI now supports stockout risk explanation, procurement message generation, and logistics Q&A.
+- Deterministic analytics are passed directly as structured context to prevent hallucinations.
+- 16 tests passing, including tests for LLM client failure states.
 
 ## Open risks
 - Gemma 4 runtime integration path must be finalized.

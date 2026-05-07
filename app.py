@@ -39,6 +39,12 @@ demand_history = load_csv_upload("Demand history CSV", "demand_history.csv")
 suppliers = load_csv_upload("Suppliers CSV", "suppliers.csv")
 pending_orders = load_csv_upload("Pending orders CSV", "pending_orders.csv")
 
+client = GemmaClient()
+st.sidebar.header("Gemma 4 Copilot Configuration")
+st.sidebar.write(f"**Backend:** `{client.backend}`")
+st.sidebar.write(f"**Model:** `{client.model_name}`")
+st.sidebar.caption("Change via GEMMA_BACKEND and GEMMA_MODEL env vars.")
+
 results = analyze_inventory(inventory, demand_history, suppliers, pending_orders, today=date(2026, 5, 4))
 
 risk_order = {"critical": 0, "high": 1, "medium": 2, "low": 3, "unknown": 4}
@@ -61,8 +67,14 @@ display_cols = [
     "risk_level",
     "recommended_quantity_units",
     "preferred_supplier",
+    "supplier_reason",
     "expiry_warning",
 ]
+
+pending_col = next((col for col in ["pending_order_note", "pending_order_notes"] if col in results.columns), None)
+if pending_col:
+    display_cols.append(pending_col)
+
 st.dataframe(results[display_cols], use_container_width=True, hide_index=True)
 
 chart_df = results.dropna(subset=["days_of_cover"]).copy()
@@ -82,15 +94,39 @@ else:
             st.write(f"**Supplier rationale:** {row['supplier_reason']}")
             if row["expiry_warning"]:
                 st.write(f"**Expiry warning:** {row['expiry_warning']}")
+            pending_val = row.get(pending_col) if pending_col else None
+            if pd.notna(pending_val) and pending_val:
+                st.write(f"**Pending orders:** {pending_val}")
             st.write("**Evidence:** " + ", ".join(row["evidence_ids"]))
 
-st.subheader("Gemma 4 copilot")
-st.info("Day 1 uses a GemmaClient stub. On Day 3, wire this to the competition-supported Gemma 4 runtime.")
-client = GemmaClient(offline_stub=True)
-selected = st.selectbox("Choose a medicine for explanation", results["medicine_name"].tolist())
+st.subheader("Gemma 4 Copilot")
+st.info("Logistics and procurement support only. Deterministic calculations are the source of truth.")
+
+selected = st.selectbox("Choose a medicine for Gemma to analyze", results["medicine_name"].tolist())
 selected_row = results[results["medicine_name"] == selected].iloc[0].to_dict()
-if st.button("Generate grounded explanation"):
-    st.write(client.explain_stockout_risk(selected_row))
+if "pending_order_note" in selected_row:
+    selected_row["pending_order_notes"] = selected_row.pop("pending_order_note")
+
+col1, col2 = st.columns(2)
+with col1:
+    if st.button("Generate risk explanation"):
+        with st.spinner("Generating explanation..."):
+            st.write(client.explain_stockout_risk(selected_row))
+
+with col2:
+    if st.button("Generate procurement message"):
+        with st.spinner("Generating message..."):
+            st.write(client.generate_procurement_message(selected_row))
+
+st.markdown("---")
+st.write("**Ask a logistics question about this medicine:**")
+question = st.text_input("Example: 'Why are we reordering from Supplier B?'")
+if st.button("Ask Gemma"):
+    if question:
+        with st.spinner("Answering..."):
+            st.write(client.answer_question(question, selected_row, all_results=results))
+    else:
+        st.warning("Please enter a question.")
 
 st.subheader("Raw sample data")
 with st.expander("Inventory"):

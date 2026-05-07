@@ -10,27 +10,28 @@
 - [x] Create deterministic calculation module
 - [x] Create initial prompt files
 - [x] Create project management files
-- [ ] Run app locally
-- [ ] Run tests locally
+- [x] Run app locally
+- [x] Run tests locally
 - [ ] Commit initial repo to GitHub
 
 ## Day 2 — Analytics engine
-- [ ] Harden data validation
-- [ ] Improve stockout/risk ranking logic
-- [ ] Add safety stock / target coverage logic
-- [ ] Add supplier feasibility scoring
-- [ ] Add expiry risk classification
-- [ ] Add benchmark scenarios
-- [ ] Expand pytest coverage
+- [x] Harden data validation
+- [x] Improve stockout/risk ranking logic
+- [x] Add safety stock / target coverage logic
+- [x] Add supplier feasibility scoring
+- [x] Add expiry risk classification
+- [x] Add benchmark scenarios
+- [x] Expand pytest coverage
 
 ## Day 3 — Gemma 4 integration
-- [ ] Finalize Gemma 4 runtime path
-- [ ] Implement src/llm/gemma_client.py
-- [ ] Add structured JSON prompting
-- [ ] Add natural-language risk explanation
-- [ ] Add procurement-message generation
-- [ ] Add refusal behavior for clinical questions
-- [ ] Add prompt tests / eval script
+- [x] choose Gemma 4 runtime path
+- [x] wire Gemma client
+- [x] connect prompt templates
+- [x] generate stockout explanations
+- [x] generate procurement messages
+- [x] add clinical-advice refusal behavior
+- [x] add Gemma output examples to EVAL_LOG.md
+- [x] update README with model usage
 
 ## Day 4 — UI polish
 - [ ] Improve Streamlit dashboard layout

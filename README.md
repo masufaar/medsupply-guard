@@ -22,6 +22,21 @@ MedSupply Guard supports logistics and procurement decisions only. It does not p
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+```
+
+### Mock Mode
+```bash
+# Windows
+$env:GEMMA_BACKEND="mock"
+streamlit run app.py
+```
+
+### Ollama Mode
+```bash
+ollama pull gemma4:e2b
+# Windows
+$env:GEMMA_BACKEND="ollama"
+$env:GEMMA_MODEL="gemma4:e2b"
 streamlit run app.py
 ```
 
