@@ -43,3 +43,43 @@ Reason: Use Gemma 4 exclusively as an explanation and communication layer. Pass 
 ## D011 — Pre-LLM Clinical Guardrail
 Date: 2026-05-07
 Reason: Added a deterministic regular expression check in `GemmaClient` to intercept clinical questions (e.g., dosage, prescribing) before they reach the LLM, triggering a hard refusal template.
+
+## D010 - Use hybrid-safe Gemma runtime architecture
+
+Decision:
+MedSupply Guard uses a `GemmaClient` abstraction instead of calling Ollama directly from `app.py`.
+
+Reason:
+This keeps the app model-flexible and makes the Gemma 4 implementation easy for Kaggle judges to verify. The same app can run in mock mode, local Ollama mode, or later in a stronger Kaggle/cloud runtime.
+
+## D011 - Use `gemma4:e2b` for constrained local Ollama runtime
+
+Decision:
+The local development machine uses `gemma4:e2b` through Ollama.
+
+Reason:
+`gemma4:e4b` exceeded available system memory. `gemma4:e2b` successfully runs locally and fits the project's constrained/offline deployment story.
+
+## D012 - Keep mock mode as a required development fallback
+
+Decision:
+`GEMMA_BACKEND=mock` remains available even after Ollama integration.
+
+Reason:
+Mock mode allows UI testing, CI testing, and demo-flow development even when Ollama is unavailable, slow, or memory-constrained.
+
+## D013 - Gemma 4 explains; Python calculates
+
+Decision:
+Gemma 4 is used only for explanation, procurement-message generation, logistics Q&A, and clinical-advice refusal.
+
+Reason:
+Inventory calculations must remain deterministic, testable, and auditable. Gemma receives structured analytics context and must not invent stockout dates, reorder quantities, supplier choices, or expiry logic.
+
+## D014 - Clinical advice is blocked before model generation
+
+Decision:
+Clinical questions are detected before Gemma generation and routed to a deterministic refusal.
+
+Reason:
+MedSupply Guard is a logistics/procurement tool, not a clinical decision-support system. It must not answer dosage, prescribing, diagnosis, treatment, side-effect, contraindication, or patient-specific medical questions.

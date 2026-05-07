@@ -93,3 +93,32 @@ Day 3 completed: Gemma 4 integration is complete.
 
 ## Next session startup instruction
 Start each session by reviewing this file, TASKS.md, DECISIONS.md, and SUBMISSION_CHECKLIST.md. Then update priorities based on current repo status, tests, and blockers.
+
+## Day 3 Status - Complete
+
+Day 3 completed the Gemma 4 integration layer.
+
+Implemented:
+- Hybrid-safe `GemmaClient` architecture.
+- `GEMMA_BACKEND=mock` fallback mode.
+- `GEMMA_BACKEND=ollama` local runtime mode.
+- `GEMMA_MODEL` environment variable, tested with `gemma4:e2b`.
+- Prompt loading from the `prompts/` directory.
+- Gemma-generated stockout explanations.
+- Gemma-generated procurement messages.
+- Logistics Q&A over deterministic analytics context.
+- Clinical-advice refusal path.
+- Output cleaning to prevent reasoning / "Thinking Process" leakage.
+- Safety utility: `is_clinical_question()`.
+- Tests for Gemma client behavior and clinical guardrails.
+
+Verified:
+- Mock mode works.
+- Ollama mode works with `gemma4:e2b`.
+- Oxytocin Injection explanation uses deterministic analytics values.
+- Procurement message uses actual reorder quantity and supplier.
+- Clinical dosage question is refused safely.
+- All tests passed after Day 3 integration.
+
+Important architecture rule:
+Gemma 4 does not calculate stockout risk, reorder quantities, supplier feasibility, expiry risk, or pending-order impact. Those remain deterministic Python analytics. Gemma receives structured deterministic context and generates explanations, procurement text, logistics Q&A, and safety refusals.

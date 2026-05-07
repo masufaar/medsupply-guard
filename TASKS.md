@@ -62,3 +62,37 @@
 - [ ] Verify live demo or downloadable demo files
 - [ ] Finalize Kaggle writeup
 - [ ] Submit
+
+## Day 3 - Gemma 4 Integration
+
+Status: Complete
+
+Completed:
+- [x] Choose Gemma 4 runtime path.
+- [x] Add `GemmaClient` abstraction.
+- [x] Support mock backend.
+- [x] Support Ollama backend.
+- [x] Default local model to `gemma4:e2b`.
+- [x] Load prompts from `prompts/`.
+- [x] Generate stockout risk explanations.
+- [x] Generate procurement messages.
+- [x] Add logistics Q&A.
+- [x] Add clinical-advice refusal behavior.
+- [x] Add `src/llm/safety.py`.
+- [x] Add Gemma client tests.
+- [x] Verify mock mode.
+- [x] Verify Ollama mode with `gemma4:e2b`.
+- [x] Update README with runtime strategy.
+
+## Day 4 - UI Polish, Prompt Hardening, Demo Flow
+
+Planned:
+- [ ] Improve UI layout for demo readability.
+- [ ] Make the Gemma Copilot section clearer.
+- [ ] Add a "demo scenario" flow for Oxytocin Injection.
+- [ ] Strengthen Q&A prompt so supplier infeasibility is prioritized above simple days-of-cover when relevant.
+- [ ] Add screenshots for README / Kaggle media gallery.
+- [ ] Add architecture diagram.
+- [ ] Draft Kaggle writeup outline.
+- [ ] Draft 3-minute video storyboard.
+- [ ] Review README for judge-facing clarity.

@@ -52,3 +52,26 @@
 - [ ] README and writeup match actual implementation
 - [ ] Repo links work
 - [ ] YouTube link works in incognito/private window
+
+## Current Submission Status - Day 3
+
+- [x] Code repo scaffold
+- [x] Deterministic analytics MVP
+- [x] Sample synthetic data
+- [x] Day 2 analytics tests
+- [x] Gemma client abstraction
+- [x] Mock backend
+- [x] Ollama backend
+- [x] Local Gemma 4 E2B verification
+- [x] Clinical refusal path
+- [x] Prompt templates
+- [ ] UI polish
+- [ ] Live demo hosting
+- [ ] Kaggle writeup under 1,500 words
+- [ ] Video under 3 minutes
+- [ ] YouTube upload
+- [ ] Cover image
+- [ ] Media gallery assets
+- [ ] Public GitHub repository link
+- [ ] Final README review
+- [ ] Final evaluation table
