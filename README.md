@@ -1,10 +1,14 @@
 # MedSupply Guard
 
+Offline-first Gemma 4 copilot for preventing essential medicine stockouts in resource-constrained clinics.
+
 <p align="center">
   <img src="assets/medsupply-guard-cover.png" alt="MedSupply Guard Cover" width="900">
 </p>
 
-Offline-first Gemma 4 copilot for medicine inventory logistics in under-resourced clinics.
+## What it does
+
+MedSupply Guard combines deterministic inventory analytics with grounded Gemma 4 explanations to help clinic logistics teams identify stockout risk, choose suppliers, generate procurement messages, and safely refuse clinical questions.
 
 ## Purpose
 MedSupply Guard helps clinic logistics/procurement staff detect essential medicine stockout risks, evaluate supplier lead times, generate reorder recommendations, and create evidence-backed procurement messages.
