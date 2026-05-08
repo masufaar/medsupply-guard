@@ -69,21 +69,28 @@ class GemmaClient:
     def _load_prompt(self, filename: str) -> str:
         return (PROMPT_DIR / filename).read_text(encoding="utf-8")
 
+    def _normalize_value(self, val: Any) -> Any:
+        import pandas as pd
+        if pd.isna(val):
+            return ""
+        return val
+
     def _prepare_context(self, analytics_row: dict[str, Any]) -> dict[str, Any]:
         """Creates a structured deterministic analytics context dictionary."""
+        risk_level = self._normalize_value(analytics_row.get("risk_level"))
         return {
-            "medicine_name": analytics_row.get("medicine_name"),
-            "current_stock": analytics_row.get("current_stock_units"),
-            "average_daily_demand": analytics_row.get("avg_daily_demand"),
-            "days_of_cover": analytics_row.get("days_of_cover"),
-            "projected_stockout_date": analytics_row.get("projected_stockout_date"),
-            "risk_level": analytics_row.get("risk_level"),
-            "risk_reason": "Stockout projected within critical window" if analytics_row.get("risk_level") in ["critical", "high"] else "Sufficient stock",
-            "recommended_reorder_quantity": analytics_row.get("recommended_quantity_units"),
-            "preferred_supplier": analytics_row.get("preferred_supplier"),
-            "supplier_reason": analytics_row.get("supplier_reason"),
-            "expiry_warning": analytics_row.get("expiry_warning"),
-            "pending_order_notes": analytics_row.get("pending_order_notes"),
+            "medicine_name": self._normalize_value(analytics_row.get("medicine_name")),
+            "current_stock": self._normalize_value(analytics_row.get("current_stock_units")),
+            "average_daily_demand": self._normalize_value(analytics_row.get("avg_daily_demand")),
+            "days_of_cover": self._normalize_value(analytics_row.get("days_of_cover")),
+            "projected_stockout_date": self._normalize_value(analytics_row.get("projected_stockout_date")),
+            "risk_level": risk_level,
+            "risk_reason": "Stockout projected within critical window" if risk_level in ["critical", "high"] else "Sufficient stock",
+            "recommended_reorder_quantity": self._normalize_value(analytics_row.get("recommended_quantity_units")),
+            "preferred_supplier": self._normalize_value(analytics_row.get("preferred_supplier")),
+            "supplier_reason": self._normalize_value(analytics_row.get("supplier_reason")),
+            "expiry_warning": self._normalize_value(analytics_row.get("expiry_warning")),
+            "pending_order_notes": self._normalize_value(analytics_row.get("pending_order_notes")),
             "safety_boundary": "Logistics and procurement support only. Do not provide clinical advice."
         }
 
@@ -148,7 +155,7 @@ class GemmaClient:
             f"Please initiate an order for {context.get('recommended_reorder_quantity', 'Unknown')} units of {context.get('medicine_name', 'Unknown')} from {context.get('preferred_supplier', 'Unknown')}.\n"
             f"Current coverage is {context.get('days_of_cover', 'Unknown')} days, with a projected stockout on {context.get('projected_stockout_date', 'Unknown')}.\n"
             f"Supplier constraints: {context.get('supplier_reason') or 'None'}.\n"
-            f"{( 'Expiry warning: ' + context.get('expiry_warning') ) if context.get('expiry_warning') else ''}"
+            f"{('Expiry warning: ' + str(context.get('expiry_warning'))) if context.get('expiry_warning') not in [None, '', False] else ''}"
         )
         return self.generate(system, user, mock_fallback=mock_fallback.strip())
 
@@ -259,20 +266,20 @@ class GemmaClient:
                     ranked = []
                     for _, row in high_risk.iterrows():
                         ranked.append({
-                            "medicine_name": row.get("medicine_name"),
-                            "risk_level": row.get("risk_level"),
-                            "days_of_cover": row.get("days_of_cover"),
-                            "recommended_reorder_quantity": row.get(
+                            "medicine_name": self._normalize_value(row.get("medicine_name")),
+                            "risk_level": self._normalize_value(row.get("risk_level")),
+                            "days_of_cover": self._normalize_value(row.get("days_of_cover")),
+                            "recommended_reorder_quantity": self._normalize_value(row.get(
                                 "recommended_reorder_quantity",
                                 row.get("recommended_quantity_units"),
-                            ),
-                            "preferred_supplier": row.get("preferred_supplier"),
-                            "supplier_reason": row.get("supplier_reason"),
-                            "expiry_warning": row.get("expiry_warning"),
-                            "pending_order_notes": row.get(
+                            )),
+                            "preferred_supplier": self._normalize_value(row.get("preferred_supplier")),
+                            "supplier_reason": self._normalize_value(row.get("supplier_reason")),
+                            "expiry_warning": self._normalize_value(row.get("expiry_warning")),
+                            "pending_order_notes": self._normalize_value(row.get(
                                 "pending_order_notes",
                                 row.get("pending_order_note", ""),
-                            ),
+                            )),
                         })
                     context_str += "\n\nRanked high-risk medicines:\n" + json.dumps(ranked, default=str, indent=2)
             except Exception:

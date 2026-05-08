@@ -188,3 +188,22 @@ Status: Passed.
 ### Overall Day 4 Result
 
 Day 4 made the app demo-ready by improving the UI, anchoring the demo around Oxytocin Injection, hardening reorder-priority logic, and creating initial Kaggle writeup and video storyboard assets.
+
+## Day 5 - Evaluation and Artifact Generation
+
+Date: 2026-05-08
+Backend tested: Mock mode & Automated tests
+Status: Passed.
+
+### Test 1 - Automated Test Suite Regression
+Check: Ran `python -m pytest` to ensure no analytics or client logic was broken during documentation preparation.
+Result: 19 tests passed in 0.75s (tests/test_gemma_client.py: 9 tests, tests/test_inventory_math.py: 10 tests).
+Status: Passed.
+
+### Test 2 - Repo Cleanup and Integrity
+Check: Verified the repository structure, ensuring no duplicate CAIO paths, no private artifacts, and accurate `README.md` instructions.
+Result: Repo is clean, only containing required source code, tests, docs, prompts, and sample data.
+Status: Passed.
+
+### Overall Day 5 Result
+Project documentation, evaluation tables, writeups, scripts, and architecture diagrams have been successfully generated for the Kaggle submission, while maintaining perfect test coverage and robust system behavior.

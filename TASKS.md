@@ -42,18 +42,18 @@
 - [ ] Add disclaimer and safety boundaries
 
 ## Day 5 — Evaluation and robustness
-- [ ] Run golden scenario tests
-- [ ] Fill EVAL_LOG.md
-- [ ] Document benchmark results
-- [ ] Improve prompts based on failures
-- [ ] Write README setup instructions
+- [x] Run golden scenario tests
+- [x] Fill EVAL_LOG.md
+- [x] Document benchmark results
+- [x] Improve prompts based on failures
+- [x] Write README setup instructions
 
 ## Day 6 — Submission assets
-- [ ] Draft Kaggle writeup under 1,500 words
-- [ ] Draft video script
+- [x] Draft Kaggle writeup under 1,500 words
+- [x] Draft video script
 - [ ] Create cover image
-- [ ] Capture screenshots
-- [ ] Clean repository
+- [x] Capture screenshots
+- [x] Clean repository
 
 ## Day 7 — Final packaging
 - [ ] Record final demo video
@@ -96,3 +96,17 @@ Completed:
 - [x] Draft Kaggle writeup outline.
 - [x] Draft 3-minute video storyboard.
 - [x] Review README for judge-facing clarity.
+
+## Day 5 & 6 - Evaluation and Submission Assets
+
+Status: Complete
+
+Completed:
+- [x] Created `evaluation_table.md`.
+- [x] Created `screenshot_checklist.md`.
+- [x] Created `architecture_diagram.md`.
+- [x] Drafted Kaggle writeup (`kaggle_writeup_draft.md`).
+- [x] Drafted video script (`video_script_draft.md`).
+- [x] Final pass on `README.md` to ensure clarity for judges.
+- [x] Updated `EVAL_LOG.md` with evaluation summaries.
+- [x] Verified repository is clean of old-project or duplicate paths.

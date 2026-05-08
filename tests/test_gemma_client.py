@@ -1,4 +1,4 @@
-﻿import os
+import os
 from unittest.mock import patch
 import pandas as pd
 
@@ -155,4 +155,28 @@ def test_answer_question_ranked_context():
     assert "Mock Answer" not in response
     assert "no supplier can arrive" in response.lower()
     assert "96" in response
+
+def test_procurement_nan_handling():
+    client = GemmaClient()
+    client.backend = "mock"
+    import numpy as np
+    
+    row_with_nans = {
+        "medicine_name": "TestMed Missing",
+        "risk_level": "medium",
+        "days_of_cover": 12.5,
+        "recommended_quantity_units": 50,
+        "preferred_supplier": "Supplier Missing",
+        "projected_stockout_date": "2026-06-01",
+        "expiry_warning": np.nan,
+        "supplier_reason": pd.NA,
+        "pending_order_notes": float("nan")
+    }
+    
+    # Should not crash with TypeError
+    msg = client.generate_procurement_message(row_with_nans)
+    
+    assert "TestMed Missing" in msg
+    assert "nan" not in msg.lower() # ensure 'nan' string is not awkwardly injected
+    assert "Expiry warning: " not in msg # Since it's NaN, it shouldn't be included
 
