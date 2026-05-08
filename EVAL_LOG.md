@@ -68,7 +68,7 @@ Input context:
 - Medicine: Oxytocin Injection
 - Current stock: 15 units
 - Days of cover: 6.1
-- Projected stockout date: 2026-05-10
+- Projected stockout date: the projected stockout date shown by the app
 - Risk level: critical
 - Recommended reorder quantity: 96 units
 - Preferred supplier: MaternalCare Supply
@@ -87,7 +87,7 @@ Gemma generated an urgent procurement message for Oxytocin Injection using actua
 - 96 units
 - MaternalCare Supply
 - critical stock risk
-- projected stockout date 2026-05-10
+- projected stockout date shown by the app
 - expiry review note
 
 No placeholders were used.

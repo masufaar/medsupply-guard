@@ -1,4 +1,4 @@
-﻿import json
+import json
 import os
 from pathlib import Path
 from typing import Any, Dict
@@ -232,11 +232,14 @@ class GemmaClient:
                     lines.append(f"   Supplier note: {supplier_reason}")
 
             lines.append("")
-            lines.append(
-                "Oxytocin Injection should be treated as the first reorder priority when it remains critical "
-                "and no supplier can arrive before projected stockout. Amoxicillin 500mg is also critical, "
-                "but its supplier path is feasible."
-            )
+            
+            if not top_rows.empty:
+                first_med = top_rows.iloc[0].get("medicine_name", "the top priority medicine")
+                lines.append(
+                    "Ranking Rationale: Critical medicines with supplier infeasibility ('No supplier can arrive before projected stockout') "
+                    "outrank critical medicines with slightly fewer days of cover but feasible suppliers. "
+                    f"Therefore, {first_med} is ranked highest due to its blocked supply path."
+                )
 
             return "\n".join(lines)
 

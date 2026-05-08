@@ -94,9 +94,14 @@ Day 3 completed: Gemma 4 integration is complete.
 ## Next session startup instruction
 Start each session by reviewing this file, TASKS.md, DECISIONS.md, and SUBMISSION_CHECKLIST.md. Then update priorities based on current repo status, tests, and blockers.
 
+## Day 4 Status - Complete
+
+Day 4 focused on UI polish, adding the Oxytocin demo scenario, improving Q&A ranking prompts for supplier infeasibility, and generating submission assets (writeup, video storyboard). Tests passed and mock mode successfully prioritizes Oxytocin due to supplier infeasibility.
+
 ## Day 3 Status - Complete
 
 Day 3 completed the Gemma 4 integration layer.
+
 
 Implemented:
 - Hybrid-safe `GemmaClient` architecture.

@@ -12,3 +12,4 @@ Instructions:
 Specific to this task:
 - Answer the user's question directly based on the data.
 - If the user asks which medicine to reorder first, prioritize based on the "Ranked high-risk medicines", citing risk level, days of cover, and supplier constraints.
+- CRITICAL RANKING RULE: Critical medicines with supplier infeasibility ("No supplier can arrive before projected stockout") MUST outrank critical medicines with slightly fewer days of cover but feasible suppliers.

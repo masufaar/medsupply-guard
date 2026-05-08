@@ -40,6 +40,9 @@ $env:GEMMA_MODEL="gemma4:e2b"
 streamlit run app.py
 ```
 
+### Demo Scenario Flow
+When the app launches, check the **Demo Scenario: Oxytocin Injection** section. It highlights a critical stockout risk where suppliers cannot arrive in time, demonstrating how MedSupply Guard handles infeasible supply chains. Use the Gemma 4 Copilot section below to generate a procurement message or ask why Oxytocin is prioritized over Amoxicillin.
+
 ## Tests
 ```bash
 pytest

@@ -57,6 +57,27 @@ k2.metric("Critical risks", int((results["risk_level"] == "critical").sum()))
 k3.metric("High risks", int((results["risk_level"] == "high").sum()))
 k4.metric("Orders recommended", int((results["recommended_quantity_units"] > 0).sum()))
 
+st.subheader("Demo Scenario: Oxytocin Injection")
+st.info("This section highlights how MedSupply Guard handles a critical stockout with supplier infeasibility. This is logistics/procurement support only, not clinical advice.")
+
+demo_df = results[results["medicine_name"] == "Oxytocin Injection"]
+if not demo_df.empty:
+    demo_row = demo_df.iloc[0]
+    st.write(f"**Medicine:** {demo_row['medicine_name']} (Risk: **{demo_row['risk_level'].upper()}**)")
+    
+    # Safely handle potential float formatting
+    days_cover_val = demo_row['days_of_cover']
+    days_cover_str = f"{days_cover_val:.1f}" if pd.notna(days_cover_val) and isinstance(days_cover_val, (int, float)) else str(days_cover_val)
+    
+    st.write(f"**Stock:** {demo_row['current_stock_units']} units (approx. {days_cover_str} days cover)")
+    st.write(f"**Projected Stockout Date:** {demo_row['projected_stockout_date']}")
+    st.warning(f"**Supplier Status:** {demo_row['supplier_reason']}")
+    st.write(f"**Action:** Recommended reorder **{demo_row['recommended_quantity_units']}** units. Selected **{demo_row['preferred_supplier']}** as the fastest available supplier.")
+else:
+    st.warning("Oxytocin Injection data not found in the current dataset.")
+
+st.markdown("---")
+
 st.subheader("Stockout risk dashboard")
 display_cols = [
     "medicine_name",

@@ -86,13 +86,13 @@ Completed:
 
 ## Day 4 - UI Polish, Prompt Hardening, Demo Flow
 
-Planned:
-- [ ] Improve UI layout for demo readability.
-- [ ] Make the Gemma Copilot section clearer.
-- [ ] Add a "demo scenario" flow for Oxytocin Injection.
-- [ ] Strengthen Q&A prompt so supplier infeasibility is prioritized above simple days-of-cover when relevant.
-- [ ] Add screenshots for README / Kaggle media gallery.
-- [ ] Add architecture diagram.
-- [ ] Draft Kaggle writeup outline.
-- [ ] Draft 3-minute video storyboard.
-- [ ] Review README for judge-facing clarity.
+Status: Complete
+
+Completed:
+- [x] Improve UI layout for demo readability.
+- [x] Make the Gemma Copilot section clearer.
+- [x] Add a "demo scenario" flow for Oxytocin Injection.
+- [x] Strengthen Q&A prompt so supplier infeasibility is prioritized above simple days-of-cover when relevant.
+- [x] Draft Kaggle writeup outline.
+- [x] Draft 3-minute video storyboard.
+- [x] Review README for judge-facing clarity.

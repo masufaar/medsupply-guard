@@ -22,3 +22,12 @@ Changes:
 
 Reason:
 Initial Ollama outputs behaved like a generic medical assistant and included reasoning traces. Prompt hardening corrected the app toward grounded, logistics-only behavior.
+
+## Day 4 - Supplier Infeasibility Prioritization
+
+Changes:
+- Added `CRITICAL RANKING RULE` to `prompts/answer_user_question.md`.
+- Explicitly instructed the model to prioritize critical medicines with supplier infeasibility over those with slightly fewer days of cover but feasible suppliers.
+
+Reason:
+To ensure the LLM correctly reflects the deterministic severity of a blocked supply chain over a simple days-of-cover sort, improving the validity of logistics Q&A.
