@@ -1,5 +1,9 @@
 # MedSupply Guard
 
+<p align="center">
+  <img src="assets/medsupply-guard-cover.png" alt="MedSupply Guard Cover" width="900">
+</p>
+
 Offline-first Gemma 4 copilot for medicine inventory logistics in under-resourced clinics.
 
 ## Purpose
