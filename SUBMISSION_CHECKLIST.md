@@ -75,3 +75,32 @@
 - [ ] Public GitHub repository link
 - [ ] Final README review
 - [ ] Final evaluation table
+
+## Current Submission Status - Day 4
+
+- [x] Code repo scaffold
+- [x] Deterministic analytics MVP
+- [x] Sample synthetic data
+- [x] Day 2 analytics tests
+- [x] Gemma client abstraction
+- [x] Mock backend
+- [x] Ollama backend
+- [x] Local Gemma 4 E2B verification
+- [x] Clinical refusal path
+- [x] Prompt templates
+- [x] UI polish
+- [x] Demo scenario section
+- [x] Q&A supplier-infeasibility prioritization
+- [x] Kaggle writeup outline
+- [x] Video storyboard
+- [ ] Live demo hosting
+- [ ] Kaggle writeup final draft under 1,500 words
+- [ ] Video under 3 minutes
+- [ ] YouTube upload
+- [ ] Cover image
+- [ ] Media gallery assets
+- [ ] Public GitHub repository link
+- [ ] Final README review
+- [ ] Final evaluation table
+- [ ] Architecture diagram image
+- [ ] Final repo cleanup

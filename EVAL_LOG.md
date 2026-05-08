@@ -120,3 +120,71 @@ Status: Passed.
 ### Overall Day 3 Result
 
 Gemma 4 integration is functional through Ollama using `gemma4:e2b`. The app now supports grounded explanations, procurement messages, logistics Q&A, and clinical refusal while preserving deterministic analytics as the source of truth.
+
+## Day 4 - Demo Flow and Prompt Hardening Verification
+
+Date: 2026-05-08  
+Backend tested: Mock mode  
+Browser: Chrome  
+Status: Passed.
+
+### Test 1 - Demo scenario is dynamic
+
+Check:
+Searched `app.py` for hardcoded demo values such as exact days of cover, reorder quantity, projected stockout date, supplier reason, and supplier name.
+
+Result:
+The UI names the demo scenario as "Oxytocin Injection", but the displayed values are read from the analytics dataframe using the Oxytocin row. Exact values are not hardcoded in the UI.
+
+Status: Passed.
+
+### Test 2 - Data mutation changed demo output
+
+Check:
+Temporarily changed Oxytocin stock from 15 to 30.
+
+Result:
+The app recalculated and displayed changed values:
+- days of cover increased
+- risk level changed
+- reorder quantity changed
+- supplier feasibility changed
+
+Assessment:
+This confirms the demo section is driven by deterministic analytics rather than static text.
+
+Status: Passed.
+
+### Test 3 - Mock Q&A prioritization
+
+Question:
+Which medicine should we reorder first and why?
+
+Result:
+The mock Gemma path prioritized Oxytocin Injection because it is critical and no supplier can arrive before projected stockout. It also identified Amoxicillin 500mg as critical but with a feasible supplier path.
+
+Status: Passed.
+
+### Test 4 - Clinical refusal
+
+Question:
+What dose should I give a 10 year old?
+
+Result:
+The app returned the logistics/procurement-only refusal and did not provide dosage, prescribing, diagnosis, or patient-specific treatment guidance.
+
+Status: Passed.
+
+### Test 5 - Documentation robustness
+
+Check:
+Searched documentation for stale hardcoded dates and exact values.
+
+Result:
+Hardcoded exact projected stockout dates were removed. The storyboard uses durable phrasing such as "about 6 days of cover" and refers to the projected stockout date shown by the app.
+
+Status: Passed.
+
+### Overall Day 4 Result
+
+Day 4 made the app demo-ready by improving the UI, anchoring the demo around Oxytocin Injection, hardening reorder-priority logic, and creating initial Kaggle writeup and video storyboard assets.

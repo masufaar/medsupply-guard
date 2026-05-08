@@ -83,3 +83,27 @@ Clinical questions are detected before Gemma generation and routed to a determin
 
 Reason:
 MedSupply Guard is a logistics/procurement tool, not a clinical decision-support system. It must not answer dosage, prescribing, diagnosis, treatment, side-effect, contraindication, or patient-specific medical questions.
+
+## D015 - Keep Day 4 demo scenario analytics-driven
+
+Decision:
+The Oxytocin Injection demo section may explicitly highlight Oxytocin as the story scenario, but all displayed values must be read from deterministic analytics output.
+
+Reason:
+This prevents the demo from becoming hardcoded theater. Judges should be able to inspect the code and see that stockout risk, days of cover, reorder quantity, supplier rationale, and expiry warning come from the analytics engine.
+
+## D016 - Prioritize supplier infeasibility above slightly lower days-of-cover
+
+Decision:
+When ranking reorder urgency, critical medicines with supplier infeasibility should outrank critical medicines with slightly fewer days of cover but feasible supplier paths.
+
+Reason:
+Operational urgency is not only "which item runs out first." A medicine with no supplier able to arrive before stockout can be a harder procurement problem than one with slightly lower days of cover but a feasible supplier route.
+
+## D017 - Use writeup and video storyboard as living submission assets
+
+Decision:
+`docs/writeup_outline.md` and `docs/video_storyboard.md` are now treated as submission-planning artifacts.
+
+Reason:
+The Kaggle submission depends heavily on story, architecture clarity, and demo quality. Maintaining these files prevents the final writeup and video from becoming last-minute work.

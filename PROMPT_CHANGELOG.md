@@ -31,3 +31,16 @@ Changes:
 
 Reason:
 To ensure the LLM correctly reflects the deterministic severity of a blocked supply chain over a simple days-of-cover sort, improving the validity of logistics Q&A.
+
+## Day 4 - Supplier Infeasibility and Demo Prompt Hardening
+
+Changes:
+- Strengthened reorder-priority instructions.
+- Added explicit rule that critical medicines with supplier infeasibility outrank critical medicines with slightly fewer days of cover but feasible supplier paths.
+- Reinforced that Gemma should cite deterministic context values.
+- Improved mock Q&A behavior to mirror the intended supplier-infeasibility ranking.
+- Removed stale hardcoded date references from documentation.
+- Made demo narrative wording more robust when sample data changes.
+
+Reason:
+During Day 3 verification, Gemma sometimes prioritized lower days-of-cover over supplier feasibility. Day 4 clarified the operational ranking rule so the demo better reflects real procurement urgency.
