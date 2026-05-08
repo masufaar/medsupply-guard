@@ -1,9 +1,11 @@
 # MedSupply Guard
 
+# MedSupply Guard
+
 Offline-first Gemma 4 copilot for preventing essential medicine stockouts in resource-constrained clinics.
 
 <p align="center">
-  <img src="assets/medsupply-guard-cover.png" alt="MedSupply Guard Cover" width="900">
+  <img src="assets/medsupply-guard-cover.png" alt="MedSupply Guard cover image" width="900">
 </p>
 
 ## What it does
