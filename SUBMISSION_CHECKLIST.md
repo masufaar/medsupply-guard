@@ -106,3 +106,12 @@
 - [x] Final evaluation table
 - [x] Architecture diagram image
 - [x] Final repo cleanup
+
+## Visual Demo Readiness
+
+- [x] Risk distribution chart added.
+- [x] Days-of-cover chart added.
+- [x] Evidence & Audit Trail panel added.
+- [x] Deterministic Markdown Procurement Brief export added.
+- [x] Visual risk overview uses deterministic analytics output.
+- [x] No new dependencies added for charts.

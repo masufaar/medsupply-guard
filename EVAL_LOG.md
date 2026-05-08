@@ -222,3 +222,33 @@ Status: Passed.
 ### Test 2 - Procurement Brief Generation
 Check: Verified `generate_procurement_brief` creates deterministic markdown handling all optional fields safely without "nan" values.
 Status: Passed.
+
+## Priority 3 — Visual Risk Overview Verification
+
+Date: 2026-05-08  
+Status: Passed
+
+### Scope
+
+Added two lightweight Streamlit charts to improve visual inspection and demo readiness:
+
+- Risk distribution chart showing medicines by risk level.
+- Days-of-cover chart showing medicines sorted by remaining cover.
+
+### Verification
+
+Manual checks confirmed:
+
+- The risk distribution chart is visible in mock mode.
+- The days-of-cover chart is visible in mock mode.
+- Charts are generated from deterministic analytics output.
+- No new charting dependencies were added.
+- Oxytocin demo scenario still works.
+- Evidence & Audit Trail still works.
+- Deterministic Markdown Procurement Brief export still works.
+- Gemma explanation and procurement message generation still work.
+- Clinical refusal still works.
+
+### Result
+
+Passed. The visual overview improves screenshot and video quality without changing stockout, reorder, supplier, expiry, or pending-order calculations.

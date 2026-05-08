@@ -4,7 +4,6 @@ from datetime import date
 from pathlib import Path
 
 import pandas as pd
-import plotly.express as px
 import streamlit as st
 
 from src.analytics.inventory_math import analyze_inventory
@@ -58,6 +57,24 @@ k2.metric("Critical risks", int((results["risk_level"] == "critical").sum()))
 k3.metric("High risks", int((results["risk_level"] == "high").sum()))
 k4.metric("Orders recommended", int((results["recommended_quantity_units"] > 0).sum()))
 
+# Risk distribution chart
+risk_counts = results['risk_level'].fillna('unknown').value_counts()
+
+# Days of cover chart
+doc_df = results[['medicine_name', 'days_of_cover']].copy()
+doc_df = doc_df[pd.notna(doc_df['days_of_cover'])]
+doc_df = doc_df.sort_values('days_of_cover')
+st.subheader("Days of Cover per Medicine")
+st.bar_chart(doc_df.set_index('medicine_name')['days_of_cover'])
+st.caption("Lower days of cover indicates earlier projected stockout risk.")
+
+# Ensure order
+risk_order = ['critical', 'high', 'medium', 'low', 'unknown']
+risk_counts = risk_counts.reindex(risk_order, fill_value=0)
+st.subheader("Risk Distribution")
+st.bar_chart(risk_counts)
+st.caption("Risk levels are calculated deterministically from stock, demand, and target coverage.")
+
 st.subheader("Demo Scenario: Oxytocin Injection")
 st.info("This section highlights how MedSupply Guard handles a critical stockout with supplier infeasibility. This is logistics/procurement support only, not clinical advice.")
 
@@ -99,10 +116,6 @@ if pending_col:
 
 st.dataframe(results[display_cols], use_container_width=True, hide_index=True)
 
-chart_df = results.dropna(subset=["days_of_cover"]).copy()
-if not chart_df.empty:
-    fig = px.bar(chart_df, x="medicine_name", y="days_of_cover", color="risk_level", title="Days of cover by medicine")
-    st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("Action plan")
 critical_or_high = results[results["risk_level"].isin(["critical", "high"])]

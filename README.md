@@ -55,6 +55,15 @@ streamlit run app.py
 ### Demo Scenario Flow
 When the app launches, check the **Demo Scenario: Oxytocin Injection** section. It highlights a critical stockout risk where suppliers cannot arrive in time, demonstrating how MedSupply Guard handles infeasible supply chains. Use the Gemma 4 Copilot section below to generate a procurement message or ask why Oxytocin is prioritized over Amoxicillin.
 
+### Visual Risk Overview
+
+The Streamlit dashboard includes two lightweight visual charts:
+
+- **Risk distribution chart** — shows how many medicines are currently classified as critical, high, medium, low, or unknown risk.
+- **Days-of-cover chart** — shows medicines sorted by remaining days of cover, helping logistics staff quickly identify items closest to stockout.
+
+These charts are generated from the deterministic analytics output. They do not change the underlying calculations and do not rely on Gemma 4 for scoring.
+
 ## Tests
 ```bash
 pytest

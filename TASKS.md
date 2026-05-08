@@ -114,3 +114,30 @@ Completed:
 - [x] Final pass on `README.md` to ensure clarity for judges.
 - [x] Updated `EVAL_LOG.md` with evaluation summaries.
 - [x] Verified repository is clean of old-project or duplicate paths.
+
+## Priority 3 — Visual Risk Overview
+
+Status: Complete
+
+Completed:
+- [x] Add risk distribution chart.
+- [x] Add days-of-cover chart.
+- [x] Keep charts deterministic and sourced from analytics output.
+- [x] Avoid new dependencies.
+- [x] Verify Streamlit app in mock mode.
+- [x] Confirm Oxytocin demo scenario still works.
+- [x] Confirm Evidence & Audit Trail still works.
+- [x] Confirm procurement brief export still works.
+- [x] Confirm Gemma explanation and procurement message still work.
+- [x] Confirm clinical refusal still works.
+
+## Optional Priority 4 — Demand Trend Indicator
+
+Status: Not started
+
+Planned, only if time allows:
+- [ ] Add deterministic demand trend indicator: rising / stable / falling.
+- [ ] Use simple recent-vs-baseline demand comparison.
+- [ ] Avoid ARIMA, Prophet, XGBoost, or new ML dependencies for this submission.
+- [ ] Clearly label as a logistics trend indicator, not a forecast.
+- [ ] Update tests and documentation if implemented.

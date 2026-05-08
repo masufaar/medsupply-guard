@@ -94,6 +94,21 @@ Day 3 completed: Gemma 4 integration is complete.
 ## Next session startup instruction
 Start each session by reviewing this file, TASKS.md, DECISIONS.md, and SUBMISSION_CHECKLIST.md. Then update priorities based on current repo status, tests, and blockers.
 
+## Priority 3 Visual Risk Overview — Complete
+
+Added lightweight dashboard charts to improve demo readability and operational scanning:
+
+- Risk distribution chart showing count of medicines by risk level.
+- Days-of-cover chart showing medicines sorted by remaining cover.
+
+These charts are generated from deterministic analytics output and do not change stockout, reorder, supplier, expiry, or pending-order calculations. Gemma 4 remains the explanation and communication layer only.
+
+Verification:
+- Streamlit app opens in mock mode.
+- Risk distribution chart is visible.
+- Days-of-cover chart is visible.
+- Oxytocin demo scenario, Evidence & Audit Trail, procurement brief export, Gemma explanation, and clinical refusal remain functional.
+
 ## Day 5 & 6 Status - Complete
 
 Day 5 and Day 6 focused on preparing the project for Kaggle submission review. This included creating the evaluation table, screenshot checklist, and architecture diagram. We finalized the Kaggle writeup (under 1,500 words) and the video script (under 3 minutes) centered around the Oxytocin supplier-infeasibility scenario. We also created a final screenshot plan and a GitHub publication checklist to prepare for open-sourcing. The README was given a final review to ensure it clearly explains the project's purpose, testing, backend modes, safety boundaries, and demo flow. The repository was thoroughly checked to ensure it is clean of extraneous artifacts. All tests continue to pass. We also added an Evidence & Audit Trail panel to the UI and a Deterministic Markdown Procurement Brief export to strengthen real-world logistics usability.
