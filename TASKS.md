@@ -35,7 +35,7 @@
 
 ## Day 4 — UI polish
 - [ ] Improve Streamlit dashboard layout
-- [ ] Add evidence panel
+- [x] Add evidence panel
 - [ ] Add action-plan page
 - [ ] Add sample scenario one-click loader
 - [ ] Add charting

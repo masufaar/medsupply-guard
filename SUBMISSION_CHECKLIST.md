@@ -14,13 +14,13 @@
 - [ ] Safety and limitations
 - [ ] Project links attached
 
-## Video — 3 minutes or less
+- [ ] Video — 3 minutes or less
 - [ ] YouTube link created
 - [ ] Publicly viewable without login
 - [ ] Problem story shown
 - [ ] Working app shown
 - [ ] Gemma 4 usage shown
-- [ ] Evidence/audit trail shown
+- [x] Evidence/audit trail shown
 - [ ] Impact statement included
 - [ ] Attached to Media Gallery
 

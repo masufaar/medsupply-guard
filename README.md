@@ -24,6 +24,7 @@ MedSupply Guard supports logistics and procurement decisions only. It does not p
 - Deterministic Python inventory analytics
 - Gemma 4 runtime copilot for grounded explanations and procurement messages
 - Evidence trail for source rows and assumptions
+- Deterministic Markdown procurement brief generation
 
 ## Why Gemma 4?
 Gemma 4 is used for its open-weights accessibility and strong offline performance. By running `gemma4:e2b` locally via Ollama, clinics with low or no internet connectivity can still benefit from a powerful logistics assistant without compromising data privacy.
