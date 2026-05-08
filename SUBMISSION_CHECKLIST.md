@@ -76,7 +76,7 @@
 - [ ] Final README review
 - [ ] Final evaluation table
 
-## Current Submission Status - Day 4 & 5
+## Current Submission Status - Day 4, 5 & 6
 
 - [x] Code repo scaffold
 - [x] Deterministic analytics MVP
@@ -95,10 +95,12 @@
 - [x] Video storyboard
 - [ ] Live demo hosting
 - [x] Kaggle writeup final draft under 1,500 words
-- [x] Video under 3 minutes
+- [x] Video final script under 3 minutes
 - [ ] YouTube upload
 - [ ] Cover image
+- [x] Final screenshot plan
 - [ ] Media gallery assets
+- [x] GitHub publication checklist
 - [ ] Public GitHub repository link
 - [x] Final README review
 - [x] Final evaluation table

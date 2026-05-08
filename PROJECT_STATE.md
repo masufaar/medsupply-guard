@@ -94,9 +94,9 @@ Day 3 completed: Gemma 4 integration is complete.
 ## Next session startup instruction
 Start each session by reviewing this file, TASKS.md, DECISIONS.md, and SUBMISSION_CHECKLIST.md. Then update priorities based on current repo status, tests, and blockers.
 
-## Day 5 Status - Complete
+## Day 5 & 6 Status - Complete
 
-Day 5 focused on preparing the project for Kaggle submission review. This included creating the evaluation table, screenshot checklist, and architecture diagram. We expanded the writeup outline into a final draft (under 1,500 words) and the video storyboard into a detailed script (under 3 minutes) centered around the Oxytocin supplier-infeasibility scenario. The README was given a final review to ensure it clearly explains the project's purpose, testing, backend modes, safety boundaries, and demo flow. The repository was thoroughly checked to ensure it is clean of extraneous artifacts. All 19 tests continue to pass.
+Day 5 and Day 6 focused on preparing the project for Kaggle submission review. This included creating the evaluation table, screenshot checklist, and architecture diagram. We finalized the Kaggle writeup (under 1,500 words) and the video script (under 3 minutes) centered around the Oxytocin supplier-infeasibility scenario. We also created a final screenshot plan and a GitHub publication checklist to prepare for open-sourcing. The README was given a final review to ensure it clearly explains the project's purpose, testing, backend modes, safety boundaries, and demo flow. The repository was thoroughly checked to ensure it is clean of extraneous artifacts. All tests continue to pass.
 
 ## Day 4 Status - Complete
 

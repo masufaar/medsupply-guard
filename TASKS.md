@@ -49,10 +49,12 @@
 - [x] Write README setup instructions
 
 ## Day 6 — Submission assets
-- [x] Draft Kaggle writeup under 1,500 words
-- [x] Draft video script
+- [x] Final Kaggle writeup under 1,500 words
+- [x] Final video script
+- [x] Create final screenshot plan
+- [x] Create GitHub publication checklist
 - [ ] Create cover image
-- [x] Capture screenshots
+- [ ] Capture screenshots
 - [x] Clean repository
 
 ## Day 7 — Final packaging
@@ -105,8 +107,10 @@ Completed:
 - [x] Created `evaluation_table.md`.
 - [x] Created `screenshot_checklist.md`.
 - [x] Created `architecture_diagram.md`.
-- [x] Drafted Kaggle writeup (`kaggle_writeup_draft.md`).
-- [x] Drafted video script (`video_script_draft.md`).
+- [x] Drafted and finalized Kaggle writeup (`kaggle_writeup_final.md`).
+- [x] Drafted and finalized video script (`video_script_final.md`).
+- [x] Created `final_screenshot_plan.md`.
+- [x] Created `github_publication_checklist.md`.
 - [x] Final pass on `README.md` to ensure clarity for judges.
 - [x] Updated `EVAL_LOG.md` with evaluation summaries.
 - [x] Verified repository is clean of old-project or duplicate paths.
