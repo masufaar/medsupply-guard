@@ -8,6 +8,7 @@ import plotly.express as px
 import streamlit as st
 
 from src.analytics.inventory_math import analyze_inventory
+from src.analytics.procurement_brief import generate_procurement_brief
 from src.llm.gemma_client import GemmaClient
 
 BASE_DIR = Path(__file__).parent
@@ -128,16 +129,64 @@ selected_row = results[results["medicine_name"] == selected].iloc[0].to_dict()
 if "pending_order_note" in selected_row:
     selected_row["pending_order_notes"] = selected_row.pop("pending_order_note")
 
+with st.expander("Evidence & Audit Trail", expanded=False):
+    st.caption("These values are calculated by the deterministic analytics engine. Gemma 4 receives this structured context for explanation only.")
+    st.write(f"- **Medicine Name:** {selected_row.get('medicine_name')}")
+    st.write(f"- **Medicine ID:** {selected_row.get('medicine_id')}")
+    st.write(f"- **Current Stock:** {selected_row.get('current_stock_units')} units")
+    st.write(f"- **Avg Daily Demand:** {selected_row.get('avg_daily_demand')}")
+    st.write(f"- **Days of Cover:** {selected_row.get('days_of_cover')}")
+    st.write(f"- **Projected Stockout Date:** {selected_row.get('projected_stockout_date')}")
+    st.write(f"- **Risk Level:** {str(selected_row.get('risk_level', '')).upper()}")
+    
+    qty = selected_row.get('recommended_quantity_units')
+    if pd.isna(qty):
+        qty = selected_row.get('recommended_reorder_quantity')
+    st.write(f"- **Recommended Quantity:** {qty} units")
+    
+    st.write(f"- **Preferred Supplier:** {selected_row.get('preferred_supplier')}")
+    st.write(f"- **Supplier Reason:** {selected_row.get('supplier_reason')}")
+    
+    exp_warn = selected_row.get('expiry_warning')
+    if pd.notna(exp_warn) and exp_warn:
+        st.write(f"- **Expiry Warning:** {exp_warn}")
+        
+    pending = selected_row.get('pending_order_notes')
+    if pd.isna(pending):
+        pending = selected_row.get('pending_order_note')
+    if pd.notna(pending) and pending:
+        st.write(f"- **Pending Orders:** {pending}")
+        
+    ev_ids = selected_row.get('evidence_ids', [])
+    if ev_ids:
+        st.write(f"- **Evidence IDs:** {', '.join(ev_ids)}")
+
+st.markdown("---")
+st.write("**Generate Artifacts**")
+
 col1, col2 = st.columns(2)
 with col1:
-    if st.button("Generate risk explanation"):
+    if st.button("Generate risk explanation (Gemma)"):
         with st.spinner("Generating explanation..."):
             st.write(client.explain_stockout_risk(selected_row))
 
 with col2:
-    if st.button("Generate procurement message"):
+    if st.button("Generate procurement message (Gemma)"):
         with st.spinner("Generating message..."):
             st.write(client.generate_procurement_message(selected_row))
+
+st.markdown("---")
+st.write("**Export Procurement Brief (Deterministic)**")
+brief_md = generate_procurement_brief(selected_row)
+with st.expander("Preview Procurement Brief", expanded=False):
+    st.markdown(brief_md)
+
+st.download_button(
+    label="Download procurement brief",
+    data=brief_md,
+    file_name=f"procurement_brief_{str(selected_row.get('medicine_name', 'medicine')).replace(' ', '_')}.md",
+    mime="text/markdown"
+)
 
 st.markdown("---")
 st.write("**Ask a logistics question about this medicine:**")
