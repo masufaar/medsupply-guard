@@ -115,4 +115,8 @@
 - [x] Deterministic Markdown Procurement Brief export added.
 - [x] Visual risk overview uses deterministic analytics output.
 - [x] No new dependencies added for charts.
-- [x] Deterministic What-if Scenario Simulator added.
+- [x] What-if Scenario Simulator added.
+- [x] Deterministic scenario transformations added.
+- [x] Scenario simulator does not mutate CSV files.
+- [x] Scenario simulator does not use Gemma to invent values.
+- [x] Scenario tests added and passing.

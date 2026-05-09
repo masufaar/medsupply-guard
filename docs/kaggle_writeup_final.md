@@ -1,4 +1,4 @@
-﻿# MedSupply Guard: Offline-First Gemma 4 Copilot for Clinic Logistics
+# MedSupply Guard: Offline-First Gemma 4 Copilot for Clinic Logistics
 
 ## Subtitle
 Preventing essential medicine stockouts with deterministic analytics and grounded local Gemma 4 explanations.
@@ -22,7 +22,7 @@ A generic chatbot is not enough for this setting. If an AI system invents stock 
 
 Gemma 4 is then used as the communication layer. It turns structured analytics output into clear stockout explanations, procurement messages, and logistics Q&A. The app is intentionally scoped to logistics and procurement support only. It does not provide diagnosis, dosage, prescribing, treatment advice, or clinical substitution recommendations.
 
-The core value is time: time to reorder, time to choose the fastest feasible supplier, and time to escalate before a shelf goes empty.
+The core value is time: time to reorder, time to choose the fastest feasible supplier, and time to escalate before a shelf goes empty. A deterministic What-if Scenario Simulator lets managers test demand surges, supplier delays, stock count corrections, pending order delays, and combined shocks without modifying source CSV files.
 
 ## Architecture
 

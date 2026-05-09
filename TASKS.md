@@ -131,15 +131,19 @@ Completed:
 - [x] Confirm Gemma explanation and procurement message still work.
 - [x] Confirm clinical refusal still works.
 
-## Priority 4 — What-if Scenario Simulator
+## What-if Scenario Simulator
 
 Status: Complete
 
 Completed:
-- [x] Create `src/analytics/scenarios.py` with deterministic logic.
-- [x] Add Base case, Demand surge, Supplier delay, Stock correction, Pending order delay, and Combined shock scenarios.
-- [x] Update `app.py` with Scenario Simulator UI.
-- [x] Add tests in `tests/test_scenarios.py`.
-- [x] Ensure original CSVs are not mutated.
-- [x] Ensure Gemma is not used to invent values.
-
+- [x] Add deterministic scenario helper module.
+- [x] Add Base case scenario.
+- [x] Add Demand surge +25% scenario.
+- [x] Add Supplier delay +7 days scenario.
+- [x] Add Stock count correction -25% scenario.
+- [x] Add Pending order delayed +7 days scenario.
+- [x] Add Combined shock scenario.
+- [x] Add scenario comparison metrics in Streamlit.
+- [x] Add scenario regression tests.
+- [x] Verify original CSV files are not mutated.
+- [x] Verify app in mock mode.

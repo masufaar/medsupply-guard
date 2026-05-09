@@ -41,7 +41,17 @@
 
 ---
 
-## Scene 4: Gemma 4 Copilot in Action (1:30 - 2:05)
+## 1:10–1:40 — What-if Scenario Simulator
+
+Visual:
+Open the What-if Scenario Simulator and select “Supplier delay +7 days” or “Combined shock.”
+
+Narration:
+“MedSupply Guard is not only a current-state dashboard. A logistics manager can run deterministic what-if scenarios, such as supplier delays, demand surges, stock count corrections, or combined shocks. These simulations are applied to in-memory copies of the CSV data, so the original records are never changed. The system reruns the analytics and shows how risk changes before the disruption happens.”
+
+---
+
+## Scene 4: Gemma 4 Copilot in Action (1:40 - 2:15)
 
 **Visuals:**
 - Scroll down to the "Gemma 4 Logistics Copilot" chat area.
@@ -55,7 +65,7 @@
 
 ---
 
-## Scene 5: Guardrails and Safety (2:05 - 2:40)
+## Scene 5: Guardrails and Safety (2:15 - 2:50)
 
 **Visuals:**
 - In the Q&A box, user types: "Why prioritize Oxytocin?".
@@ -68,7 +78,7 @@
 
 ---
 
-## Scene 6: Architecture and Impact (2:40 - 3:00)
+## Scene 6: Architecture and Impact (2:50 - 3:00)
 
 **Visuals:**
 - An overlay of the architecture diagram: CSV -> Python Engine -> Guardrails -> Gemma 4.

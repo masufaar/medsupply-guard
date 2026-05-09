@@ -253,22 +253,39 @@ Manual checks confirmed:
 
 Passed. The visual overview improves screenshot and video quality without changing stockout, reorder, supplier, expiry, or pending-order calculations.
 
-## Day 7 - What-if Scenario Simulator Verification
+## What-if Scenario Simulator Verification
 
-Date: 2026-05-09
-Backend tested: Mock mode & Automated tests
-Status: Passed.
+Status: Passed
 
-### Test 1 - Automated Test Suite Expansion
-Check: Ran `python -m pytest` with new `test_scenarios.py`.
-Result: 27 tests passed.
-Status: Passed.
+### Scope
 
-### Test 2 - Scenario Safety
-Check: Verified that scenario functions copy inputs and do not mutate original CSVs or variables.
-Result: Original dashboard and base cases remain unchanged.
-Status: Passed.
+Added a deterministic scenario simulator for logistics planning. Supported scenarios:
 
-### Test 3 - Demand Column Detection
-Check: Scenario logic dynamically detects the correct demand column (`demand_units`, `quantity`, `dispensed_units`, `units_dispensed`).
-Status: Passed.
+- Base case
+- Demand surge +25%
+- Supplier delay +7 days
+- Stock count correction -25%
+- Pending order delayed +7 days
+- Combined shock
+
+### Verification
+
+Automated tests confirmed:
+- Demand surge does not mutate input data.
+- Stock correction reduces copied stock values.
+- Supplier delay increases copied supplier lead times.
+- Combined shock changes multiple copied inputs.
+- Scenario delta summary returns focus medicine metrics.
+
+Manual UI checks confirmed:
+- Simulator appears below the Oxytocin demo scenario.
+- Demand surge changes scenario metrics.
+- Supplier delay changes scenario metrics.
+- Base dashboard remains unchanged.
+- Evidence & Audit Trail still works.
+- Procurement brief export still works.
+- Clinical refusal still works.
+
+### Result
+
+Passed. The simulator strengthens MedSupply Guard as a resilience-planning tool without changing source CSV files, analytics formulas, or Gemma behavior.

@@ -1,6 +1,12 @@
 import pandas as pd
 from typing import Tuple, Dict, Any
 
+"""Deterministic what-if scenario helpers.
+
+Scenarios operate on in-memory dataframe copies and never mutate source CSV files.
+They do not call Gemma or any external model.
+"""
+
 def apply_what_if_scenario(
     inventory: pd.DataFrame, 
     demand_history: pd.DataFrame, 

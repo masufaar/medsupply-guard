@@ -111,6 +111,18 @@ Verification:
 
 ## Day 5 & 6 Status - Complete
 
+### What-if Scenario Simulator
+
+MedSupply Guard includes a deterministic What-if Scenario Simulator for logistics managers. It lets users test operational disruptions such as:
+
+- Demand surge +25%
+- Supplier delay +7 days
+- Stock count correction -25%
+- Pending order delayed +7 days
+- Combined shock
+
+Scenarios are applied to in-memory copies of the CSV data. They do not change source files and do not use Gemma 4 to invent values. The simulator reruns the deterministic analytics engine and compares base-case results against the selected what-if scenario.
+
 Day 5 and Day 6 focused on preparing the project for Kaggle submission review. This included creating the evaluation table, screenshot checklist, and architecture diagram. We finalized the Kaggle writeup (under 1,500 words) and the video script (under 3 minutes) centered around the Oxytocin supplier-infeasibility scenario. We also created a final screenshot plan and a GitHub publication checklist to prepare for open-sourcing. The README was given a final review to ensure it clearly explains the project's purpose, testing, backend modes, safety boundaries, and demo flow. The repository was thoroughly checked to ensure it is clean of extraneous artifacts. All tests continue to pass. We also added an Evidence & Audit Trail panel to the UI, a Deterministic Markdown Procurement Brief export, and a deterministic What-if Scenario Simulator to strengthen real-world logistics usability.
 
 ## Day 4 Status - Complete
