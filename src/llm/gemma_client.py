@@ -7,6 +7,12 @@ import requests
 
 from src.llm.safety import is_clinical_question
 
+"""
+Gemma 4 Client integration for MedSupply Guard.
+Gemma explains and communicates only. It does not perform deterministic calculations.
+Both mock and Ollama backends are supported.
+"""
+
 PROMPT_DIR = Path(__file__).resolve().parents[2] / "prompts"
 
 
@@ -60,7 +66,10 @@ def clean_model_output(text: str) -> str:
     return "\n\n".join(cleaned_blocks).strip()
 
 class GemmaClient:
-    """Gemma 4 integration wrapper supporting 'mock' and 'ollama' modes."""
+    """
+    Gemma 4 integration wrapper supporting 'mock' and 'ollama' modes.
+    Handles communication with the LLM backend for explaining deterministic analytics.
+    """
 
     def __init__(self):
         self.backend = os.environ.get("GEMMA_BACKEND", "mock").lower()
@@ -160,7 +169,10 @@ class GemmaClient:
         return self.generate(system, user, mock_fallback=mock_fallback.strip())
 
     def answer_question(self, question: str, analytics_row: dict[str, Any], all_results: Any = None) -> str:
-        """Answer logistics-only questions using deterministic analytics context."""
+        """
+        Answer logistics-only questions using deterministic analytics context.
+        Clinical advice is strictly blocked.
+        """
         if is_clinical_question(question):
             return self.refuse_clinical_advice(question)
 
@@ -297,6 +309,7 @@ class GemmaClient:
         return self.generate(system, user, mock_fallback=mock_fallback)
 
     def refuse_clinical_advice(self, question: str) -> str:
+        """Provides a standard deterministic refusal message for clinical questions."""
         safe_refusal = (
             "MedSupply Guard supports logistics and procurement only. I can't provide dosage, "
             "prescribing, diagnosis, or patient-specific treatment guidance. Please consult a "

@@ -1,5 +1,9 @@
 import pandas as pd
 
+"""
+Generates a deterministic markdown procurement brief.
+This module is deterministic and relies on the true analytics data.
+"""
 def _safe_str(val) -> str:
     """Helper to safely format a value, returning empty string for NaN/NaT/None."""
     if pd.isna(val) or val in (None, "", "nan", "NaT"):
@@ -9,6 +13,7 @@ def _safe_str(val) -> str:
 def generate_procurement_brief(row: dict) -> str:
     """
     Deterministically generates a Markdown procurement brief from an analytics row.
+    Relies purely on structured analytics data. No LLM processing here.
     """
     medicine_name = _safe_str(row.get("medicine_name", "Unknown Medicine"))
     risk_level = _safe_str(row.get("risk_level", "Unknown")).upper()

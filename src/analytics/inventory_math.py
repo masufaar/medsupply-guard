@@ -6,7 +6,11 @@ from typing import Optional
 
 import pandas as pd
 
-
+"""
+Deterministic analytics engine for MedSupply Guard.
+This module performs all mathematical calculations for inventory, demand, and risk.
+It is the source of truth. No LLMs are used here to prevent hallucinations.
+"""
 @dataclass(frozen=True)
 class RiskResult:
     medicine_id: str
@@ -24,6 +28,7 @@ class RiskResult:
 
 
 def _parse_date(value) -> Optional[date]:
+    """Safely parses various date formats into a standard date object."""
     if pd.isna(value) or value in (None, ""):
         return None
     if isinstance(value, date):
@@ -32,6 +37,9 @@ def _parse_date(value) -> Optional[date]:
 
 
 def average_daily_demand(demand_history: pd.DataFrame, medicine_id: str, lookback_days: int = 30) -> float:
+    """
+    Deterministically calculates the average daily demand over a given lookback period.
+    """
     df = demand_history[demand_history["medicine_id"] == medicine_id].copy()
     if df.empty:
         return 0.0
@@ -44,12 +52,18 @@ def average_daily_demand(demand_history: pd.DataFrame, medicine_id: str, lookbac
 
 
 def days_of_cover(current_stock_units: float, avg_daily_demand: float) -> Optional[float]:
+    """
+    Calculates how many days the current stock will last based on average daily demand.
+    """
     if avg_daily_demand <= 0:
         return None
     return round(float(current_stock_units) / float(avg_daily_demand), 1)
 
 
 def risk_level(days_cover: Optional[float], criticality: str) -> str:
+    """
+    Deterministically assigns a risk level (critical, high, medium, low) based on days of cover.
+    """
     crit = str(criticality).lower()
     if days_cover is None:
         return "unknown"
@@ -63,12 +77,19 @@ def risk_level(days_cover: Optional[float], criticality: str) -> str:
 
 
 def recommended_quantity(avg_daily_demand: float, min_target_days: float, current_stock_units: float, pending_units: float = 0) -> float:
+    """
+    Calculates the exact number of units to reorder to meet the target coverage days.
+    """
     target = max(float(avg_daily_demand) * float(min_target_days), 0)
     needed = target - float(current_stock_units) - float(pending_units)
     return max(round(needed), 0)
 
 
 def choose_supplier(suppliers: pd.DataFrame, medicine_id: str, days_cover: Optional[float]) -> tuple[Optional[str], str]:
+    """
+    Deterministically selects the best supplier based on lead time and unit cost,
+    prioritizing arrival before stockout.
+    """
     options = suppliers[suppliers["medicine_id"] == medicine_id].copy()
     if options.empty:
         return None, "No supplier data available."
@@ -86,6 +107,9 @@ def choose_supplier(suppliers: pd.DataFrame, medicine_id: str, days_cover: Optio
 
 
 def expiry_warning(expiry_date, today: date, days_cover: Optional[float]) -> Optional[str]:
+    """
+    Generates a deterministic warning if stock is expiring soon or before it can be used.
+    """
     exp = _parse_date(expiry_date)
     if exp is None:
         return "Expiry date missing."
@@ -106,6 +130,11 @@ def analyze_inventory(
     pending_orders: pd.DataFrame,
     today: Optional[date] = None,
 ) -> pd.DataFrame:
+    """
+    Main entry point for the deterministic analytics engine.
+    Calculates risks, supplier recommendations, and evidence trails for all medicines.
+    This output is the absolute source of truth.
+    """
     today = today or date.today()
     rows: list[RiskResult] = []
     pending_by_med = pending_orders.groupby("medicine_id")["quantity_units"].sum().to_dict() if not pending_orders.empty else {}
@@ -140,3 +169,4 @@ def analyze_inventory(
             )
         )
     return pd.DataFrame([r.__dict__ for r in rows])
+

@@ -1,5 +1,13 @@
 from __future__ import annotations
 
+"""
+MedSupply Guard Streamlit Application.
+This is the main entry point for the Kaggle demo.
+The UI layout is intentionally maintained as-is.
+Deterministic analytics serve as the source of truth, while Gemma provides explanations.
+Clinical advice is strictly blocked.
+"""
+
 from datetime import date
 from pathlib import Path
 
@@ -25,6 +33,7 @@ st.warning(
 
 
 def load_csv_upload(label: str, sample_file: str) -> pd.DataFrame:
+    """Loads CSV data from user upload or falls back to synthetic sample data."""
     uploaded = st.sidebar.file_uploader(label, type=["csv"], key=sample_file)
     if uploaded is not None:
         return pd.read_csv(uploaded)
@@ -45,6 +54,8 @@ st.sidebar.write(f"**Backend:** `{client.backend}`")
 st.sidebar.write(f"**Model:** `{client.model_name}`")
 st.sidebar.caption("Change via GEMMA_BACKEND and GEMMA_MODEL env vars.")
 
+# Run deterministic analytics engine to calculate risks and reorder plans
+# This is the single source of truth for the application.
 results = analyze_inventory(inventory, demand_history, suppliers, pending_orders, today=date(2026, 5, 4))
 
 risk_order = {"critical": 0, "high": 1, "medium": 2, "low": 3, "unknown": 4}

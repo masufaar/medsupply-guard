@@ -1,5 +1,10 @@
 import re
 
+"""
+Safety utilities for MedSupply Guard.
+Clinical advice is strictly blocked by these rules.
+"""
+
 def is_clinical_question(text: str) -> bool:
     """
     Detects if the input text contains terms that request clinical advice,
