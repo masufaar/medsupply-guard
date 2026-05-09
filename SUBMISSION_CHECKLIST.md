@@ -115,3 +115,4 @@
 - [x] Deterministic Markdown Procurement Brief export added.
 - [x] Visual risk overview uses deterministic analytics output.
 - [x] No new dependencies added for charts.
+- [x] Deterministic What-if Scenario Simulator added.

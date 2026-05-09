@@ -16,6 +16,7 @@ import streamlit as st
 
 from src.analytics.inventory_math import analyze_inventory
 from src.analytics.procurement_brief import generate_procurement_brief
+from src.analytics.scenarios import apply_what_if_scenario, summarize_scenario_delta
 from src.llm.gemma_client import GemmaClient
 
 BASE_DIR = Path(__file__).parent
@@ -58,8 +59,8 @@ st.sidebar.caption("Change via GEMMA_BACKEND and GEMMA_MODEL env vars.")
 # This is the single source of truth for the application.
 results = analyze_inventory(inventory, demand_history, suppliers, pending_orders, today=date(2026, 5, 4))
 
-risk_order = {"critical": 0, "high": 1, "medium": 2, "low": 3, "unknown": 4}
-results["risk_sort"] = results["risk_level"].map(risk_order).fillna(5)
+risk_sort_order = {"critical": 0, "high": 1, "medium": 2, "low": 3, "unknown": 4}
+results["risk_sort"] = results["risk_level"].map(risk_sort_order).fillna(5)
 results = results.sort_values(["risk_sort", "days_of_cover"], na_position="last")
 
 k1, k2, k3, k4 = st.columns(4)
@@ -80,8 +81,8 @@ st.bar_chart(doc_df.set_index('medicine_name')['days_of_cover'])
 st.caption("Lower days of cover indicates earlier projected stockout risk.")
 
 # Ensure order
-risk_order = ['critical', 'high', 'medium', 'low', 'unknown']
-risk_counts = risk_counts.reindex(risk_order, fill_value=0)
+risk_chart_order = ['critical', 'high', 'medium', 'low', 'unknown']
+risk_counts = risk_counts.reindex(risk_chart_order, fill_value=0)
 st.subheader("Risk Distribution")
 st.bar_chart(risk_counts)
 st.caption("Risk levels are calculated deterministically from stock, demand, and target coverage.")
@@ -104,6 +105,44 @@ if not demo_df.empty:
     st.write(f"**Action:** Recommended reorder **{demo_row['recommended_quantity_units']}** units. Selected **{demo_row['preferred_supplier']}** as the fastest available supplier.")
 else:
     st.warning("Oxytocin Injection data not found in the current dataset.")
+
+st.markdown("---")
+
+st.subheader("What-if Scenario Simulator")
+st.caption("Scenarios are deterministic simulations applied to in-memory copies of the CSV data. They do not change source files and do not use Gemma to invent values.")
+scenario_name = st.selectbox("Select a scenario to simulate:", [
+    "Base case",
+    "Demand surge +25%",
+    "Supplier delay +7 days",
+    "Stock count correction -25%",
+    "Pending order delayed +7 days",
+    "Combined shock"
+])
+if st.button("Run what-if scenario"):
+    with st.spinner("Simulating..."):
+        inv_scen, dem_scen, sup_scen, pen_scen = apply_what_if_scenario(inventory, demand_history, suppliers, pending_orders, scenario_name)
+        scenario_results = analyze_inventory(inv_scen, dem_scen, sup_scen, pen_scen, today=date(2026, 5, 4))
+        
+        scenario_results["risk_sort"] = scenario_results["risk_level"].map(risk_sort_order).fillna(5)
+        scenario_results = scenario_results.sort_values(["risk_sort", "days_of_cover"], na_position="last")
+        
+        summary = summarize_scenario_delta(results, scenario_results)
+        
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Critical Items", summary["scenario_critical"], summary["scenario_critical"] - summary["base_critical"], delta_color="inverse")
+        col2.metric("High Risk Items", summary["scenario_high"], summary["scenario_high"] - summary["base_high"], delta_color="inverse")
+        col3.metric("Orders Recommended", summary["scenario_orders"], summary["scenario_orders"] - summary["base_orders"], delta_color="inverse")
+        
+        if summary["focus_scenario"]:
+            st.write(f"**Oxytocin Injection Metrics:**")
+            st.write(f"- Days of cover: {summary['focus_scenario'].get('days_of_cover')} (was {summary['focus_base'].get('days_of_cover')})")
+            st.write(f"- Risk level: {summary['focus_scenario'].get('risk_level')} (was {summary['focus_base'].get('risk_level')})")
+            st.write(f"- Reorder qty: {summary['focus_scenario'].get('recommended_quantity_units')} (was {summary['focus_base'].get('recommended_quantity_units')})")
+        
+        if summary["top_changed"]:
+            st.write("**Top Impacted Medicines (Days of Cover Change):**")
+            top_df = pd.DataFrame(summary["top_changed"])[["medicine_name", "risk_level_base", "risk_level_scenario", "days_of_cover_base", "days_of_cover_scenario", "days_of_cover_change", "recommended_quantity_units_base", "recommended_quantity_units_scenario"]]
+            st.dataframe(top_df, use_container_width=True, hide_index=True)
 
 st.markdown("---")
 

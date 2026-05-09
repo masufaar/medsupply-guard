@@ -252,3 +252,23 @@ Manual checks confirmed:
 ### Result
 
 Passed. The visual overview improves screenshot and video quality without changing stockout, reorder, supplier, expiry, or pending-order calculations.
+
+## Day 7 - What-if Scenario Simulator Verification
+
+Date: 2026-05-09
+Backend tested: Mock mode & Automated tests
+Status: Passed.
+
+### Test 1 - Automated Test Suite Expansion
+Check: Ran `python -m pytest` with new `test_scenarios.py`.
+Result: 27 tests passed.
+Status: Passed.
+
+### Test 2 - Scenario Safety
+Check: Verified that scenario functions copy inputs and do not mutate original CSVs or variables.
+Result: Original dashboard and base cases remain unchanged.
+Status: Passed.
+
+### Test 3 - Demand Column Detection
+Check: Scenario logic dynamically detects the correct demand column (`demand_units`, `quantity`, `dispensed_units`, `units_dispensed`).
+Status: Passed.

@@ -25,6 +25,7 @@ MedSupply Guard supports logistics and procurement decisions only. It does not p
 - Gemma 4 runtime copilot for grounded explanations and procurement messages
 - Evidence trail for source rows and assumptions
 - Deterministic Markdown procurement brief generation
+- Deterministic What-if Scenario Simulator
 
 ## Why Gemma 4?
 Gemma 4 is used for its open-weights accessibility and strong offline performance. By running `gemma4:e2b` locally via Ollama, clinics with low or no internet connectivity can still benefit from a powerful logistics assistant without compromising data privacy.
@@ -63,6 +64,10 @@ The Streamlit dashboard includes two lightweight visual charts:
 - **Days-of-cover chart** — shows medicines sorted by remaining days of cover, helping logistics staff quickly identify items closest to stockout.
 
 These charts are generated from the deterministic analytics output. They do not change the underlying calculations and do not rely on Gemma 4 for scoring.
+
+### What-if Scenario Simulator
+
+MedSupply Guard includes a deterministic What-if Scenario Simulator that allows logistics managers to test operational disruptions before they happen (e.g., Demand surge +25%, Supplier delay +7 days). It uses in-memory transformations and does not alter the original CSV files or use Gemma to invent values.
 
 ## Tests
 ```bash

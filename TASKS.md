@@ -131,13 +131,15 @@ Completed:
 - [x] Confirm Gemma explanation and procurement message still work.
 - [x] Confirm clinical refusal still works.
 
-## Optional Priority 4 — Demand Trend Indicator
+## Priority 4 — What-if Scenario Simulator
 
-Status: Not started
+Status: Complete
 
-Planned, only if time allows:
-- [ ] Add deterministic demand trend indicator: rising / stable / falling.
-- [ ] Use simple recent-vs-baseline demand comparison.
-- [ ] Avoid ARIMA, Prophet, XGBoost, or new ML dependencies for this submission.
-- [ ] Clearly label as a logistics trend indicator, not a forecast.
-- [ ] Update tests and documentation if implemented.
+Completed:
+- [x] Create `src/analytics/scenarios.py` with deterministic logic.
+- [x] Add Base case, Demand surge, Supplier delay, Stock correction, Pending order delay, and Combined shock scenarios.
+- [x] Update `app.py` with Scenario Simulator UI.
+- [x] Add tests in `tests/test_scenarios.py`.
+- [x] Ensure original CSVs are not mutated.
+- [x] Ensure Gemma is not used to invent values.
+
